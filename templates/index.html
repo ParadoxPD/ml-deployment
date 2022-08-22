@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask ML App</title>
+    <style>
+        form {
+            width: 80vw;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            padding: 50px;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid teal;
+        }
+
+        div {
+            padding: 10px;
+        }
+
+        label {
+            width: 20px;
+            height: 20px;
+        }
+
+        input[type="submit"] {
+            height: 40px;
+            width: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="{{url_for('predict')}}" method="post">
+        <!-- price,area,bedrooms,bathrooms,stories,mainroad,guestroom,basement,hotwaterheating,airconditioning,parking,prefarea,furnishingstatus
+        -->
+        <div>
+            <label for="area">Area</label>
+            <input type="text" name="area" id="area">
+        </div>
+        <div>
+            <label for="bedrooms">Bedrooms : </label>
+            <select name="bedrooms" id="bedrooms">
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+        <div>
+            <label for="bathrooms">Bathrooms : </label>
+            <select name="bathrooms" id="bathrooms">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
+        </div>
+        <div>
+            <label for="stories">Stories : </label>
+            <select name="stories" id="stories">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
+        </div>
+        <div>
+            <label for="mainroad">Mainroad : </label>
+            <select name="mainroad" id="mainroad">
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+            </select>
+        </div>
+        <div>
+            <label for="guestroom">Guestroom : </label>
+            <select name="guestroom" id="guestroom">
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+            </select>
+        </div>
+        <div>
+            <label for="basement">Basement : </label>
+            <select name="basement" id="basement">
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+            </select>
+        </div>
+        <div>
+            <label for="hotwaterheating">Hot Water Heating : </label>
+            <select name="hotwaterheating" id="hotwaterheating">
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+            </select>
+        </div>
+        <div>
+            <label for="airconditioning">Air Conditioning : </label>
+            <select name="airconditioning" id="airconditioning">
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+            </select>
+        </div>
+        <div>
+            <label for="prefarea">Prefarea : </label>
+            <select name="prefarea" id="prefarea">
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+            </select>
+        </div>
+        <div>
+            <label for="furnishingstatus">Furnishing Status : </label>
+            <select name="furnishingstatus" id="furnishingstatus">
+                <option value="0">unfurnished</option>
+                <option value="0.5">semi-furnished</option>
+                <option value="1">furnished</option>
+            </select>
+        </div>
+        <input type="submit" value="Submit">
+    </form>
+
+    <h3><br>{{prediction_text}}</h3>
+</body>
+
+</html>
