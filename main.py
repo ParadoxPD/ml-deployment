@@ -13,13 +13,17 @@ def index():
 
 @app.route('/predict', methods=['GET', 'POST'])
 def predict():
-    area = request.form.get('area')
-    x = []
-    scaler = StandardScaler()
-    scaled_X = scaler.fit_transform(x)
-    prediction = model.predict([scaled_X])
-    output = round(prediction[0], 2)
-    return render_template('index.html', prediction_text=f'Price = {output}')
+    try:
+
+        x = [request.form.get('area'), request.form.get('bedrooms'), request.form.get('bathrooms'), request.form.get('stories'), request.form.get('mainroad'), request.form.get(
+            'guestroom'), request.form.get('basement'), request.form.get('hotwaterheating'), request.form.get('airconditioning'), request.form.get('parking'), request.form.get('prefarea'), request.form.get('furnishingstatus')]
+        scaler = StandardScaler()
+        scaled_X = scaler.fit_transform([x])
+        prediction = model.predict(scaled_X)
+        output = round(prediction[0], 2)
+        return render_template('index.html', prediction_text=f'Price = {output}')
+    except Exception:
+        return render_template('index.html', prediction_text=f'Invalid Input')
 
 
 if __name__ == '__main__':
